@@ -1,0 +1,196 @@
+{	
+	"ready": {
+		"url":"/ready",
+		"text":"Вы готовы начать тест?",
+		"choiceAnswer": ["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain","/start"]	
+	},
+	"AreYouInAnyPain": {
+		"url":"/AreYouInAnyPain",
+		"text":"Вас беспокоят боли?",
+		"choiceAnswer": ["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo","/DoYouHaveAviolationOfUrination"]	
+	},
+	"AreYouInAnyPain_Wo": {
+		"url":"/AreYouInAnyPain/Wo",
+		"text":"Где у вас болит?",
+		"choiceAnswer": ["Низ живота", "Половой член", "Мошонка", "Промежность"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/bottomStomach/how","/AreYouInAnyPain/Wo/another/itch", "/AreYouInAnyPain/Wo/another/itch","/AreYouInAnyPain/Wo/another/itch"]	
+	},
+	"AreYouInAnyPain_Wo_bottomStomachhow": {
+		"url":"/AreYouInAnyPain/Wo/bottomStomach/how",
+		"text":"Какая у вас боль в низу живота?",
+		"choiceAnswer": ["Острая", "Тянущая", "Ноющая", "Отдает в мошонку","Отдает в задний проход"],
+		"choiceRouting":["/inprogress","/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine", "/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine", "/AreYouInAnyPain/Wo/bottomStomach/how/go","/AreYouInAnyPain/Wo/bottomStomach/how/go"]
+	},
+	"AreYouInAnyPain_Wo_bottomStomach_how_oftenurine": {
+		"url":"/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine",
+		"text":"Как часто бывают ночные мочеиспускания?",
+		"choiceAnswer": ["0-1 раз", "1-2 раза", "2-3 раза"],
+		"choiceRouting":  ["/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine/difficulturine","/inprogress","/inprogress"]	
+	},
+	"AreYouInAnyPain_Wo_bottomStomach_howoften_urine_difficulturine": {
+		"url":"/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine/difficulturine",
+		"text":"Есть затруднения при мочеиспускании?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine/difficulturine/all","/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine/difficulturine/all"]
+	},
+	"AreYouInAnyPain_Wo_bottomStomach_how_go": {
+		"url":"/AreYouInAnyPain/Wo/bottomStomach/how/go",
+		"text":"Болит при ходьбе?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/bottomStomach/how/bloodurine","/AreYouInAnyPain/Wo/bottomStomach/how/bloodurine"]	
+	},
+	"AreYouInAnyPain_Wo_bottomStomach_how_oftenurine_difficulturine_all": {
+		"url":"/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine/difficulturine/all",
+		"text":"Есть ощущение неполного опорожнения мочего пузыря после мочеиспускания?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/inprogress","/inprogress"]	
+	},
+	"AreYouInAnyPain_Wo_bottomStomach_how_bloodurine": {
+		"url":"/AreYouInAnyPain/Wo/bottomStomach/how/bloodurine",
+		"text":"Есть кровь в моче?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/inprogress","/AreYouInAnyPain/Wo/bottomStomach/how/oftenurine"]
+	},
+	"AreYouInAnyPain_Wo_another_itch": {
+		"url":"/AreYouInAnyPain/Wo/another/itch",
+		"text":"Как у вас болит? Зуд?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/another/burn","/AreYouInAnyPain/Wo/another/burn"]
+	},
+	"AreYouInAnyPain_Wo_another_burn": {
+		"url":"/AreYouInAnyPain/Wo/another/burn",
+		"text":"Как у вас болит? Жжение?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/another/discomfort","/AreYouInAnyPain/Wo/another/discomfort"]
+	},
+	"AreYouInAnyPain_Wo_another_discomfort": {
+		"url":"/AreYouInAnyPain/Wo/another/discomfort",
+		"text":"Как у вас болит? Дискомфорт?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/another/penispain","/AreYouInAnyPain/Wo/another/penispain"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain",
+		"text":"Где болит в половом члене?",
+		"choiceAnswer":["Внутри (канал)", "Головка снаружи","Крайняя плоть", "Весь орган"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/another/penispain/in/excreta","/AreYouInAnyPain/Wo/another/penispain/out/openhead","/inprogress","/AreYouInAnyPain/Wo/another/penispain/all/erection"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_in_excreta": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/in/excreta",
+		"text":"Есть выделения?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/another/penispain/in/excreta/color", "/inprogress"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead",
+		"text":"Можете открыть головку?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/another/penispain/out/openhead/all", "/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/red"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_all_erection": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/all/erection",
+		"text":"У Вас есть боли при эрекции?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/another/penispain/all/erection/deform", "/inprogress"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_in_excreta_color": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/in/excreta/color",
+		"text":"Какого цвета выделения?",
+		"choiceAnswer":["Гнойные", "Бесцветные","Слизистые"],
+		"choiceRouting": ["/inprogress", "/inprogress","/inprogress"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_all": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/all",
+		"text":"Головка полностью открывается?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/inprogress", "/inprogress"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_head_red": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/red",
+		"text":"На головке наблюдается покраснение?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/rush", "/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/rush"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_head_rush": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/rush",
+		"text":"На головке наблюдается высыпание?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":["/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/peeling", "/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/peeling"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_head_peeling": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/peeling",
+		"text":"На головке наблюдается шелушение?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/warts", "/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/warts"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_head_warts": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/warts",
+		"text":"На головке наблюдаются бородавки?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":   ["/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/smell", "/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/smell"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_head_smell": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/smell",
+		"text":"На головке наблюдается неприятный запах?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting": ["/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/deform", "/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/deform"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_out_openhead_head_deform": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/out/openhead/head/deform",
+		"text":"На головке наблюдается искривление головки?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":   ["/inprogress", "/inprogress"]
+	},
+	"AreYouInAnyPain_Wo_another_penispain_all_erection_deform": {
+		"url":"/AreYouInAnyPain/Wo/another/penispain/all/erection/deform",
+		"text":"Есть ли искривление полового члена при эрекции?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":   ["/inprogress", "/inprogress"]
+	},
+	"DoYouHaveAviolationOfUrination": {
+		"url":"/DoYouHaveAviolationOfUrination",
+		"text":"У вас есть нарушения мочеиспускания?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/DoYouHaveAviolationOfUrination/any/oft","/YouHaveChangedTheColorOfTheUrine"]
+	},
+		"DoYouHaveAviolationOfUrination_any_oft":{
+		"url":"/DoYouHaveAviolationOfUrination/any/oft",
+		"text":"У вас частые мочеиспускания?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/DoYouHaveAviolationOfUrination/any/pain","/DoYouHaveAviolationOfUrination/any/pain"]
+	},
+	"DoYouHaveAviolationOfUrination_any_pain":{
+		"url":"/DoYouHaveAviolationOfUrination/any/pain",
+		"text":"У вас болезненные мочеиспускания?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/DoYouHaveAviolationOfUrination/any/sluggishstream","/DoYouHaveAviolationOfUrination/any/sluggishstream"]
+	},
+	"DoYouHaveAviolationOfUrination_any_sluggishstream":{
+		"url":"/DoYouHaveAviolationOfUrination/any/sluggishstream",
+		"text":"У вас вялая струя при мочеиспускании?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/DoYouHaveAviolationOfUrination/any/difficulty","/DoYouHaveAviolationOfUrination/any/difficulty"]
+	},
+		"DoYouHaveAviolationOfUrination_any_difficulty":{
+		"url":"/DoYouHaveAviolationOfUrination/any/difficulty",
+		"text":"У Вас затрудненное мочеиспускание?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/DoYouHaveAviolationOfUrination/any/newsnine","/DoYouHaveAviolationOfUrination/any/newsnine"]
+	},
+		"DoYouHaveAviolationOfUrination_any_newsnine":{
+		"url":"/DoYouHaveAviolationOfUrination/any/newsnine",
+		"text":"У Вас невозможное мочеиспускание?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/inprogress","/inprogress"]
+	},
+
+	"YouHaveChangedTheColorOfTheUrine": {
+		"url":"/YouHaveChangedTheColorOfTheUrine",
+		"text":"У Вас изменяется цвет мочи?",
+		"choiceAnswer":["Да", "Нет"],
+		"choiceRouting":  ["/inprogress","/inprogress"]
+	}
+	
+}
