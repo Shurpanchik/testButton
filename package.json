@@ -11,7 +11,9 @@
     "express": "3.1.x",
     "botbuilder": "^3.4.2",
     "restify": "^4.2.0",
-    "pg":"6.1.x"
+    "pg":"6.1.x",
+    "tedious": "^1.14.0",
+    "tedious-connection-pool": "*"
   },
   "author": "",
   "license": "ISC"
