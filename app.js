@@ -5,6 +5,7 @@ A simple "Hello World" bot for the Microsoft Bot Framework.
 var restify  = require('restify');
 var builder  = require('botbuilder');
 var route 	 = require('./route.json');
+var db		 = require('./DatabaseHeroku.js')
 
 
 //=========================================================
@@ -145,9 +146,15 @@ bot.dialog('/menu', [
         session.beginDialog('/ready')
     },
 ]);
-
+bot.dialog('/connectToBase', [
+    function (session) {
+		session.send('Проверка конекта к базе '+ db.answer);
+    }
+]);
 bot.beginDialogAction('start', '/start', {matches: /^\/?start/i});
 bot.beginDialogAction('menu', '/menu', {matches: /^\/?menu/i});
+bot.beginDialogAction('connectToBase', '/connectToBase', {matches: /^\/?menu/i});
+
 
 setDialog(route.ready);
 setDialog(route.AreYouInAnyPain);
