@@ -6,7 +6,7 @@ var restify  = require('restify');
 var builder  = require('botbuilder');
 var route 	 = require('./route.json');
 //var db		 = require('./DatabaseHeroku.js')
-// var db = = require('./db.js')
+var db = require('./db.js')
 
 
 //=========================================================
