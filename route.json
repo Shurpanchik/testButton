@@ -8,7 +8,7 @@
 	"AreYouInAnyPain": {
 		"url":"/AreYouInAnyPain",
 		"text":"Вас беспокоят боли?",
-		"choiceAnswer": ["Да", "йцукенгшщзхъфывапролджэячсмитьбю1234567890"],
+		"choiceAnswer": ["Да", "0123456789 йцукенгшщз фывапролдж"],
 		"choiceRouting":["/AreYouInAnyPain/Wo","/DoYouHaveAviolationOfUrination"]	
 	},
 	"AreYouInAnyPain_Wo": {
