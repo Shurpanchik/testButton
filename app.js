@@ -161,8 +161,7 @@ bot.dialog('/menu', [
 		answerMap.clear();
         session.beginDialog('/')
     },
-]);
-bot.dialog('/sendFirstMessageToDoctor', [
+]);bot.dialog('/sendFirstMessageToDoctor', [
 	function (session) {
 		builder.Prompts.text(session, 'Напишите свой вопрос специалисту:')
 	},
@@ -175,7 +174,7 @@ bot.dialog('/sendFirstMessageToDoctor', [
 			.text(result.response)
 			.attachments([
 				new builder.HeroCard(session)
-					.buttons([builder.CardAction.dialogAction(session, 'sendMessageToDoctor', JSON.stringify({
+					.buttons([builder.CardAction.dialogAction(session, 'sendMessageToPatient', JSON.stringify({
 						"text": result.response,
 						"address": JSON.stringify(session.message.address)
 					}), 'Ответить')])
@@ -200,7 +199,7 @@ bot.dialog('sendMessageToPatient', [
 		if (result.data) {
 			session.userData.textquestion = JSON.parse(result.data)['text'];
 			session.userData.addressClient = JSON.parse(result.data)['address'];
-			builder.Prompts.text(session, locale['text_answer_question']);
+			builder.Prompts.text(session,"Напишите ответ клиенту");
 		} else {
 			session.endDialog('Серверная ошибка');
 		}
