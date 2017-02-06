@@ -115,6 +115,7 @@ function setAnswerMap(){
 //=========================================================
 bot.dialog('/', [
     function (session) {
+	    session.send(session.message.address);
         session.beginDialog('/start')
     },
 ]);
