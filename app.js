@@ -207,7 +207,7 @@ bot.dialog('sendMessageToPatient', [
 	function (session, result) {
 		var msg = new builder.Message()
 			.address(JSON.parse(session.userData.addressClient))
-			.text("Вы отправляли сообщение " + session.userData.textquestion + ' Вам ответили: ' + session.userData.textquestion);
+			.text("Вы отправляли сообщение " + session.userData.textquestion + ' Вам ответили: ' + result.response);
 		bot.send(msg, function (err) {
 			if (err == undefined) {
 				session.send("Ваш ответ успешно доставлен");
