@@ -1,10 +1,9 @@
-/*-----------------------------------------------------------------------------
-A simple "Hello World" bot for the Microsoft Bot Framework. 
------------------------------------------------------------------------------*/
 
 var restify  = require('restify');
 var builder  = require('botbuilder');
 var route 	 = require('./route.json');
+//var db		 = require('./DatabaseHeroku.js')
+//var db = require('./db.js')
 
 
 //=========================================================
@@ -19,10 +18,8 @@ server.listen(process.env.port || process.env.PORT || 8888, function () {
   
 // Create chat bot
 var connector = new builder.ChatConnector({
-   // appId: '221a8268-52b6-40e7-84b6-36ac009d6027',
-    //appPassword: 'JpwiLtYqxFoOjtdBF8a8cjZ'
-	appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
+    appId: '221a8268-52b6-40e7-84b6-36ac009d6027',
+    appPassword: 'JpwiLtYqxFoOjtdBF8a8cjZ'
 });
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
@@ -114,24 +111,9 @@ function setAnswerMap(){
 // Bots Dialogs
 //=========================================================
 bot.dialog('/', [
-	function (session) {
-		session.send('Здравствуйте, Вас приветствует бот Мужкометр!')
-		builder.Prompts.text('Представьтесь, пожалуйста, боту')
-	},
-	function (session, result) {
-		session.userData.nameUser = result.response;
-		builder.Prompts.choice(session, 'Главное меню', 'Начать тест|Написать доктору', {
-			listStyle: builder.ListStyle.button,
-			retryPrompt: "Выберите вариант из списка предложенных"
-		});
-	},
-	function (session, result) {
-		if (result.response.index == 0) {
-			session.beginDialog('/ready')
-		} else {
-			session.beginDialog('/sendFirstMessageToDoctor')
-		}
-	}
+    function (session) {
+        session.beginDialog('/start')
+    },
 ]);
 
 bot.dialog('/inprogress', 
@@ -153,31 +135,23 @@ function (session) {
 bot.dialog('/start', [
     function (session) {
 		answerMap.clear();
-        session.beginDialog('/')
+        session.beginDialog('/ready')
     },
 ]);
 bot.dialog('/menu', [
     function (session) {
 		answerMap.clear();
-        session.beginDialog('/')
+        session.beginDialog('/ready')
     },
 ]);
-bot.dialog('/sendFirstMessageToDoctor', [
+bot.dialog('/connectToBase', [
     function (session) {
-		builder.Prompts.text('Напишите свой вопрос специалисту:')
-    },
-	function (session, result) {
-		// здесь должна быть логика отправки сообщения всем докторам с кнопкой
-		// положить сообщение в базу
-		// пока сделаем конкретному kleines_stofftier             
-    },
-	function(session){
-		session.endDialog('В ближайшее время наши специалисты свяжутся с вами')
-	}
+		//session.send('Проверка конекта к базе '+ db.answer);
+    }
 ]);
-
 bot.beginDialogAction('start', '/start', {matches: /^\/?start/i});
 bot.beginDialogAction('menu', '/menu', {matches: /^\/?menu/i});
+bot.beginDialogAction('connectToBase', '/connectToBase', {matches: /^\/?menu/i});
 
 
 setDialog(route.ready);
@@ -212,13 +186,4 @@ setDialog(route.DoYouHaveAviolationOfUrination_any_sluggishstream);
 setDialog(route.DoYouHaveAviolationOfUrination_any_difficulty);
 setDialog(route.DoYouHaveAviolationOfUrination_any_newsnine);
 setDialog(route.YouHaveChangedTheColorOfTheUrine);
-
-
-
-
-
-
-
-
-
 
