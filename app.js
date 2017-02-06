@@ -19,7 +19,7 @@ server.listen(process.env.port || process.env.PORT || 8888, function () {
   
 // Create chat bot
 var connector = new builder.ChatConnector({
-    appId: '221a8268-52b6-40e7-84b6-36ac009d6027',
+   appId: '221a8268-52b6-40e7-84b6-36ac009d6027',
     appPassword: 'JpwiLtYqxFoOjtdBF8a8cjZ'
 	//appId: process.env.MICROSOFT_APP_ID,
     //appPassword: process.env.MICROSOFT_APP_PASSWORD
@@ -163,21 +163,64 @@ bot.dialog('/menu', [
     },
 ]);
 bot.dialog('/sendFirstMessageToDoctor', [
-    function (session) {
+	function (session) {
 		builder.Prompts.text(session, 'Напишите свой вопрос специалисту:')
-    },
+	},
 	function (session, result) {
-		session.send(JSON.stringify(session.message.address))
-		session.endDialog();
 		// здесь должна быть логика отправки сообщения всем докторам с кнопкой
 		// положить сообщение в базу
-		// пока сделаем конкретному kleines_stofftier             
-    },
-	function(session){
-		session.endDialog('В ближайшее время наши специалисты свяжутся с вами')
+		// пока сделаем конкретному kleines_stofftier        
+		var msg = new builder.Message()
+			.address(JSON.parse('{"id":"1486381282451","channelId":"skype","user":{"id":"29:1E68fgb7x7pfbNXX7z-3Jjr9JlVMuJqS2yTu9tTN42v3t6BsADH1fZ8OMoSQb0Ym-","name":"Татьяна Шур"},"conversation":{"id":"29:1E68fgb7x7pfbNXX7z-3Jjr9JlVMuJqS2yTu9tTN42v3t6BsADH1fZ8OMoSQb0Ym-"},"bot":{"id":"28:221a8268-52b6-40e7-84b6-36ac009d6027","name":"firstKoala23112016_bot"},"serviceUrl":"https://smba.trafficmanager.net/apis/","useAuth":true}'))
+			.text(result.response)
+			.attachments([
+				new builder.HeroCard(session)
+					.buttons([builder.CardAction.dialogAction(session, 'sendMessageToDoctor', JSON.stringify({
+						"text": result.response,
+						"address": JSON.stringify(session.message.address)
+					}), 'Ответить')])
+			]);
+		bot.send(msg, function (err) {
+			if (err == undefined) {
+				session.send("Ваш вопрос успешно доставлен");
+			}
+			else {
+				session.send("Ваш вопрос не дошел до доктора. Попробуйте задать его позже");
+			}
+		});
+	},
+	function (session) {
+		session.endDialog()
 	}
 ]);
 
+bot.dialog('sendMessageToPatient', [
+	function (session, result) {
+		console.log(result)
+		if (result.data) {
+			session.userData.textquestion = JSON.parse(result.data)['text'];
+			session.userData.addressClient = JSON.parse(result.data)['address'];
+			builder.Prompts.text(session, locale['text_answer_question']);
+		} else {
+			session.endDialog('Серверная ошибка');
+		}
+	},
+	function (session, result) {
+		var msg = new builder.Message()
+			.address(JSON.parse(session.userData.addressClient))
+			.text("Вы отправляли сообщение " + session.userData.textquestion + ' Вам ответили: ' + session.userData.textquestion);
+		bot.send(msg, function (err) {
+			if (err == undefined) {
+				session.send("Ваш ответ успешно доставлен");
+			}
+			else {
+				session.send("Ваш ответ не дошел до клиента. Попробуйте отправить его позже");
+			}
+		});
+	}
+])
+
+bot.beginDialogAction('sendMessageToPatient', 'sendMessageToPatient', {matches: /^\/?sendMessageToPatient (\d+)/i});
 bot.beginDialogAction('start', '/start', {matches: /^\/?start/i});
 bot.beginDialogAction('menu', '/menu', {matches: /^\/?menu/i});
 
@@ -214,7 +257,6 @@ setDialog(route.DoYouHaveAviolationOfUrination_any_sluggishstream);
 setDialog(route.DoYouHaveAviolationOfUrination_any_difficulty);
 setDialog(route.DoYouHaveAviolationOfUrination_any_newsnine);
 setDialog(route.YouHaveChangedTheColorOfTheUrine);
-
 
 
 
