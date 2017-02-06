@@ -115,7 +115,6 @@ function setAnswerMap(){
 //=========================================================
 bot.dialog('/', [
 	function (session, result) {
-		session.send(session.message.address)
 		session.send('Здравствуйте, Вас приветствует бот Мужкометр!')
 		builder.Prompts.text(session, 'Представьтесь, пожалуйста, боту')
 	},
@@ -168,6 +167,8 @@ bot.dialog('/sendFirstMessageToDoctor', [
 		builder.Prompts.text(session, 'Напишите свой вопрос специалисту:')
     },
 	function (session, result) {
+		session.send(session.message.address)
+		session.endDialog('В ближайшее время наши специалисты свяжутся с вами')
 		// здесь должна быть логика отправки сообщения всем докторам с кнопкой
 		// положить сообщение в базу
 		// пока сделаем конкретному kleines_stofftier             
