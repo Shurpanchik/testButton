@@ -115,6 +115,7 @@ function setAnswerMap(){
 //=========================================================
 bot.dialog('/', [
 	function (session, result) {
+		session.send(session.message.address)
 		session.send('Здравствуйте, Вас приветствует бот Мужкометр!')
 		builder.Prompts.text(session, 'Представьтесь, пожалуйста, боту')
 	},
