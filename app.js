@@ -167,8 +167,8 @@ bot.dialog('/sendFirstMessageToDoctor', [
 		builder.Prompts.text(session, 'Напишите свой вопрос специалисту:')
     },
 	function (session, result) {
-		session.send(session.message.address)
-		session.endDialog('В ближайшее время наши специалисты свяжутся с вами')
+		session.send(JSON.stringify(session.message.address))
+		session.endDialog();
 		// здесь должна быть логика отправки сообщения всем докторам с кнопкой
 		// положить сообщение в базу
 		// пока сделаем конкретному kleines_stofftier             
