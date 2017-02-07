@@ -199,7 +199,7 @@ bot.dialog('sendMessageToPatient', [
 		if (result.data) {
 			session.userData.textquestion = JSON.parse(result.data)['text'];
 			session.userData.addressClient = JSON.parse(result.data)['address'];
-			builder.Prompts.text(session,"Напишите ответ клиенту");
+			builder.Prompts.text(session,"Напишите ответ ");
 		} else {
 			session.endDialog('Серверная ошибка');
 		}
