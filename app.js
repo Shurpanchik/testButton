@@ -208,7 +208,6 @@ bot.dialog('sendMessageToPatient', [
 		var msg = new builder.Message()
 			.address(JSON.parse(session.userData.addressClient))
 			.text("Вы отправляли сообщение " + session.userData.textquestion + ' Вам ответили: ' + result.response);
-			
 		bot.send(msg, function (err) {
 			if (err == undefined) {
 				session.send("Ваш ответ успешно доставлен");
@@ -257,7 +256,6 @@ setDialog(route.DoYouHaveAviolationOfUrination_any_sluggishstream);
 setDialog(route.DoYouHaveAviolationOfUrination_any_difficulty);
 setDialog(route.DoYouHaveAviolationOfUrination_any_newsnine);
 setDialog(route.YouHaveChangedTheColorOfTheUrine);
-
 
 
 
