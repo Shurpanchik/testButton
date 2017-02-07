@@ -206,8 +206,15 @@ bot.dialog('sendMessageToPatient', [
 	},
 	function (session, result) {
 		var msg = new builder.Message()
-			.address(JSON.parse(session.userData.addressClient))
-			.text("Вы отправляли сообщение " + session.userData.textquestion + ' Вам ответили: ' + result.response);
+			.address(session.userData.addressClient)
+			.text("Вы отправляли сообщение " + session.userData.textquestion + ' Вам ответили: ' + result.response)
+			.attachments([
+				new builder.HeroCard(session)
+					.buttons([builder.CardAction.dialogAction(session, 'sendMessageToPatient', JSON.stringify({
+						"text": result.response,
+						"address": JSON.stringify(session.message.address)
+					}), 'Ответить')])
+			]);
 		bot.send(msg, function (err) {
 			if (err == undefined) {
 				session.send("Ваш ответ успешно доставлен");
